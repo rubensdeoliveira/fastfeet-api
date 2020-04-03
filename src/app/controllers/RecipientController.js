@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import Recipient from '../models/Recipient'
 
-class UserController {
+class RecipientController {
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string()
@@ -51,4 +51,4 @@ class UserController {
   }
 }
 
-export default new UserController()
+export default new RecipientController()

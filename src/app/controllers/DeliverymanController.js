@@ -4,11 +4,15 @@ import File from '../models/File'
 
 class DeliverymanController {
   async index(req, res) {
+    const { page = 1 } = req.query
+
     const deliverymans = await Deliveryman.findAll({
       attributes: ['id', 'name', 'email', 'avatar_id'],
       include: [
         { model: File, as: 'avatar', attributes: ['name', 'path', 'url'] },
       ],
+      limit: 20,
+      offset: (page - 1) * 20,
     })
 
     return res.json(deliverymans)
@@ -20,7 +24,7 @@ class DeliverymanController {
         .required()
         .min(6),
       email: Yup.string().required(),
-      avatar_id: Yup.number().integer(),
+      avatar_id: Yup.number(),
     })
 
     if (!(await schema.isValid(req.body))) {
@@ -37,7 +41,7 @@ class DeliverymanController {
         .json({ error: 'Já existe um entregador com o e-mail fornecido' })
     }
 
-    const avatarExists = await File.findOne({ where: { id: avatar_id } })
+    const avatarExists = await File.findByPk(avatar_id)
 
     if (!avatarExists) {
       return res
@@ -54,7 +58,7 @@ class DeliverymanController {
     const schema = Yup.object().shape({
       name: Yup.string().min(6),
       email: Yup.string(),
-      avatar_id: Yup.number().integer(),
+      avatar_id: Yup.number(),
     })
 
     if (!(await schema.isValid(req.body))) {
@@ -80,7 +84,7 @@ class DeliverymanController {
     }
 
     if (avatar_id) {
-      const avatarExists = await File.findOne({ where: { id: avatar_id } })
+      const avatarExists = await File.findByPk(avatar_id)
 
       if (!avatarExists) {
         return res

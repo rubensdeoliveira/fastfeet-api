@@ -9,13 +9,17 @@ import SessionController from './app/controllers/SessionController'
 import RecipientController from './app/controllers/RecipientController'
 import FileController from './app/controllers/FileController'
 import DeliverymanController from './app/controllers/DeliverymanController'
+import DeliverymanDeliveriesController from './app/controllers/DeliverymanDeliveriesController'
 import DeliveryController from './app/controllers/DeliveryController'
 
 const routes = new Router()
 const upload = multer(multerConfig)
 
 routes.post('/users', UserController.store)
+
 routes.post('/sessions', SessionController.store)
+
+routes.get('/deliveryman/:id/deliveries', DeliverymanDeliveriesController.index)
 
 routes.use(authMiddleware)
 

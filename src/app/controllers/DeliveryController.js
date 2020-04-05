@@ -145,6 +145,10 @@ class DeliveryController {
       product,
     })
 
+    /*
+     * enviar email para o novo entragador, caso o administrador por algum
+     * motivo decida alterar o entregador da encomenda.
+     */
     if (deliveryman_id && deliverymanBeforeUpdate !== deliveryman_id) {
       const recipient = recipient_id
         ? await Recipient.findByPk(recipient_id)

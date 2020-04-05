@@ -21,6 +21,11 @@ routes.post('/users', UserController.store)
 routes.post('/sessions', SessionController.store)
 
 routes.get('/deliveryman/:id/deliveries', DeliverymanDeliveriesController.index)
+routes.put(
+  '/deliveryman/:dmid/deliveries/:dvid',
+  DeliverymanDeliveriesController.update
+)
+
 routes.get('/deliveryman/:id/delivered', DeliverymanDeliveredController.index)
 
 routes.use(authMiddleware)

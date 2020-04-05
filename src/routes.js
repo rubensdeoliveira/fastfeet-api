@@ -10,6 +10,7 @@ import RecipientController from './app/controllers/RecipientController'
 import FileController from './app/controllers/FileController'
 import DeliverymanController from './app/controllers/DeliverymanController'
 import DeliverymanDeliveriesController from './app/controllers/DeliverymanDeliveriesController'
+import DeliverymanDeliveredController from './app/controllers/DeliverymanDeliveredController'
 import DeliveryController from './app/controllers/DeliveryController'
 
 const routes = new Router()
@@ -20,6 +21,7 @@ routes.post('/users', UserController.store)
 routes.post('/sessions', SessionController.store)
 
 routes.get('/deliveryman/:id/deliveries', DeliverymanDeliveriesController.index)
+routes.get('/deliveryman/:id/delivered', DeliverymanDeliveredController.index)
 
 routes.use(authMiddleware)
 

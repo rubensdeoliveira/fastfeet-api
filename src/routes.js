@@ -25,9 +25,9 @@ routes.put('/recipients/:id', RecipientController.update)
 
 routes.post('/files', upload.single('file'), FileController.store)
 
-// routes.get('/deliverymans', DeliverymanController.index)
+routes.get('/deliverymans', DeliverymanController.index)
 routes.post('/deliverymans', DeliverymanController.store)
 routes.put('/deliverymans/:id', DeliverymanController.update)
-// routes.delete('/deliverymans/:id', DeliverymanController.delete)
+routes.delete('/deliverymans/:id', DeliverymanController.delete)
 
 export default routes

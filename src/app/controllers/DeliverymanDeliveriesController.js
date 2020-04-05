@@ -1,5 +1,7 @@
 // import Deliveryman from '../models/Deliveryman'
 import * as Yup from 'yup'
+import { Op } from 'sequelize'
+import { startOfHour, parseISO, isBefore, startOfDay, endOfDay } from 'date-fns'
 import Delivery from '../models/Delivery'
 import Recipient from '../models/Recipient'
 import File from '../models/File'
@@ -31,9 +33,9 @@ class DeliverymanDeliveriesController {
           ],
         },
       ],
+      order: ['created_at'],
       limit: 20,
       offset: (page - 1) * 20,
-      order: ['created_at'],
     })
 
     return res.json(deliveries)
@@ -71,6 +73,43 @@ class DeliverymanDeliveriesController {
         return res
           .status(400)
           .json({ error: 'Imagem de assinatura não existente!' })
+      }
+    }
+
+    if (end_date && !delivery.start_date) {
+      return res.status(400).json({
+        error: 'Você precisar ter retirado a encomenda antes de finaliza-la.',
+      })
+    }
+
+    const startDate = start_date ? parseISO(start_date) : delivery.start_date
+    const endDate = end_date ? parseISO(end_date) : delivery.end_date
+    const hourStartDate = startOfHour(startDate)
+    const hourEndDate = startOfHour(endDate)
+
+    if (isBefore(hourEndDate, hourStartDate)) {
+      return res.status(400).json({
+        error:
+          'O horário de entrega da encomenda não pode ser antes do horário de retirada.',
+      })
+    }
+
+    if (start_date) {
+      const parsedDate = parseISO(start_date)
+
+      const deliveriesCount = await Delivery.count({
+        where: {
+          deliveryman_id: req.params.dmid,
+          start_date: {
+            [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)],
+          },
+        },
+      })
+
+      if (deliveriesCount >= 5) {
+        return res.status(400).json({
+          error: 'Você só pode retirar até 5 encomendas por dia.',
+        })
       }
     }
 

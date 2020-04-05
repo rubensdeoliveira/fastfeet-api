@@ -21,6 +21,10 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: true,
       },
+      product: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       signature_id: {
         type: Sequelize.INTEGER,
         references: { model: 'files', key: 'id' },

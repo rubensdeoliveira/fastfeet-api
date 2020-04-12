@@ -115,11 +115,11 @@ Abaixo estão descritas as rotas do sistema.
 
 #### - Delivery Problems (/deliveries/problems)
 
-|        Resource        | Method | Params (JSON) | Headers |
-| :--------------------: | :----: | :-----------: | :-----: |
-|   /delivery/problems   |  GET   |      {/}      |   JWT   |
-| /delivery/:id/problems |  GET   |      {/}      |   JWT   |
-| /delivery/:id/problems |  POST  | {description} |   {/}   |
+|            Resource            | Method | Params (JSON) | Headers |
+| :----------------------------: | :----: | :-----------: | :-----: |
+|       /delivery/problems       |  GET   |      {/}      |   JWT   |
+|     /delivery/:id/problems     |  GET   |      {/}      |   JWT   |
+| /delivery/:id/deliveryproblems |  POST  | {description} |   {/}   |
 
 #### - Cancellation Delivery (/problem/:id/cancel-delivery)
 

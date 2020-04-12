@@ -14,17 +14,17 @@ Trata-se de uma aplicação para empresas de entrega de encomendas.
 
 ### **User Stories**
 
--Os administradores da aplicação podem cadastrar, alterar, deletar e consultar entregadores;
--Os administradores da aplicação podem cadastrar foto nos entregadores;
--Os administradores da aplicação podem cadastrar, alterar, deletar e consultar destinatários;
--Os administradores da aplicação podem cadastrar, alterar, deletar e consultar encomendas;
--Os administradores da aplicação podem cancelar uma encomenda baseado em um problema cadastrado pelo entregador;
--Os entregadores podem retirar uma encomenda;
--Os entregadores podem finalizar uma entrega;
--Os entregadores podem cadastrar um problema na entrega;
--Os entregadores podem cadastrar uma foto contendo assinatura do cliente;
--Os entregadores receberão e-mails caso a encomenda que eles foram designados for cancelada;
--Os entregadores receberão e-mails caso uma nova encomenda seja designada para ele;
+- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar entregadores;
+- Os administradores da aplicação podem cadastrar foto nos entregadores;
+- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar destinatários;
+- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar encomendas;
+- Os administradores da aplicação podem cancelar uma encomenda baseado em um problema cadastrado pelo entregador;
+- Os entregadores podem retirar uma encomenda;
+- Os entregadores podem finalizar uma entrega;
+- Os entregadores podem cadastrar um problema na entrega;
+- Os entregadores podem cadastrar uma foto contendo assinatura do cliente;
+- Os entregadores receberão e-mails caso a encomenda que eles foram designados for cancelada;
+- Os entregadores receberão e-mails caso uma nova encomenda seja designada para ele;
 
 ### **Um pouco sobre as ferramentas**
 
@@ -111,15 +111,15 @@ Abaixo estão descritas as rotas do sistema.
 | :---------------------------------: | :----: | :----------------------------------: | :-----: |
 |     /deliveryman/:id/delivered      |  GET   |                 {/}                  |   {/}   |
 |     /deliveryman/:id/deliveries     |  GET   |                 {/}                  |   {/}   |
-| /deliveryman/:iddm/deliveries/:iddl |  PUT   | {start_date, end_date, signature_id} |   JWT   |
+| /deliveryman/:dmid/deliveries/:dvid |  PUT   | {start_date, end_date, signature_id} |   JWT   |
 
 #### - Delivery Problems (/deliveries/problems)
 
-|         Resource         | Method | Params (JSON) | Headers |
-| :----------------------: | :----: | :-----------: | :-----: |
-|   /deliveries/problems   |  GET   |      {/}      |   JWT   |
-| /deliveries/:id/problems |  GET   |      {/}      |   JWT   |
-| /deliveries/:id/problems |  POST  | {description} |   JWT   |
+|        Resource        | Method | Params (JSON) | Headers |
+| :--------------------: | :----: | :-----------: | :-----: |
+|   /delivery/problems   |  GET   |      {/}      |   JWT   |
+| /delivery/:id/problems |  GET   |      {/}      |   JWT   |
+| /delivery/:id/problems |  POST  | {description} |   {/}   |
 
 #### - Cancellation Delivery (/problem/:id/cancel-delivery)
 

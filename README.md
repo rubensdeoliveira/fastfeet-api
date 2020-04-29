@@ -3,71 +3,41 @@
 </h1>
 
 <h3 align="center">
-  Desafio fastfeet da Rocketseat
+  FastFeet
 </h3>
 
-<p>Esse desafio faz parte do Desafio Final do curso GoStack10 da Rocketseat, que é uma aplicação Back-end que é avaliada para emissão do Certificado do Bootcamp GoStack!</p>
+<p align="center">
+Application that allows delivery administrators to manage the deliveries of your company. This project is only about the API, that is, the backend of the application.</p>
 
-## :rocket: Sobre o desafio
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
+  </a>
+</p>
 
-Trata-se de uma aplicação para empresas de entrega de encomendas.
+<hr />
 
-### **User Stories**
+## Features
 
-- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar entregadores;
-- Os administradores da aplicação podem cadastrar foto nos entregadores;
-- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar destinatários;
-- Os administradores da aplicação podem cadastrar, alterar, deletar e consultar encomendas;
-- Os administradores da aplicação podem cancelar uma encomenda baseado em um problema cadastrado pelo entregador;
-- Os entregadores podem retirar uma encomenda;
-- Os entregadores podem finalizar uma entrega;
-- Os entregadores podem cadastrar um problema na entrega;
-- Os entregadores podem cadastrar uma foto contendo assinatura do cliente;
-- Os entregadores receberão e-mails caso a encomenda que eles foram designados for cancelada;
-- Os entregadores receberão e-mails caso uma nova encomenda seja designada para ele;
+- Application administrators can register, change, delete and consult delivery personnel;
+- The administrators of the application can register a photo with the delivery personnel;
+- Application administrators can register, change, delete and consult recipients;
+- Application administrators can register, change, delete and consult orders;
+- Application administrators can cancel an order based on a problem registered by the delivery person;
+- Deliverers can pick up an order;
+- Deliverers can finalize a delivery;
+- Delivery personnel can register a delivery problem;
+- Delivery personnel can register a photo containing the customer's signature;
+- Deliverers will receive emails if the order they were assigned to is canceled;
+- Deliverers will receive emails if a new order is assigned to them;
 
-### **Um pouco sobre as ferramentas**
+- Features can be accessed by routes below.
 
-- Express;
-- Sucrase + Nodemon;
-- ESLint + Prettier + EditorConfig;
-- Sequelize (Utilizando PostgreSQL);
-- jsonwebtoken + bcryptjs;
-- Yup;
-- Multer;
-- date-fns;
-- nodemailer + nodemailer-express-handlebars;
-- Bee Queue
+- 💹 **Node Js** — A web framework for Node Js
 
-### **Database**
+### **Routes**
 
-Está API está utilizando PostgreSQL para fazer o relacionamento entre as encomendas, entregadores e destinatários. Temos também a de usuários admin da distribuidora e uma tabela para criação de logs de problemas que os entregadores podem encontrar em seu trabalho.
-
-### **Inicializar API**
-
-- yarn dev
-- yarn dev:debug (verificar pasta .vscode para configurações)
-- yarn queue (rodar servidor de e-mails)
-
-### **Email**
-
-Nesta aplicação é utilizado o envio de email para a comunicação com os entregadores. Quando uma encomenda tem seu estado alterado para “cancelado” o entregador vinculado a aquela entrega, recebe um email de notificação, o que também é feito quando uma nova entrega é atribuída a um entregador.
-
-### **Autenticação**
-
-A autenticação foi realizada com o uso de jsonwebtoken (JWT). Esse processo tem início quando um usuário admin do sistema abre uma seção por meio da rota Session, após a validação de seus dados cadastrais o mesmo recebe da API um token com seu id.
-
-Agora este usuário só tem de vincular esse token a suas próximas requisição por meio do protocolo Bearer. Neste sistema todas a ações a partir da abertura da seção irá pedir uma validação por meio do token.
-
-### **Validação dos dados**
-
-Nesta aplicação todas as requisições passam por processo de verificação de seu dados. Este procedimento é realizado por meio de lib Yup e verificações condizentes com as regras de negócios, por exemplo existência unica de um email.
-
-### **Rotas**
-
-Abaixo estão descritas as rotas do sistema.
-
-#### - Users (/users)
+  #### - Users (/users)
 
 | Resource | Method |      Params (JSON)      | Headers |
 | :------: | :----: | :---------------------: | :-----: |
@@ -133,10 +103,28 @@ Abaixo estão descritas as rotas do sistema.
 | :------: | :----: | :-----------: | :-----: |
 |  /files  |  POST  |    {file}     |   JWT   |
 
-## :memo: Licença
+## Getting started
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+- Clone project > enter the project folder
+- run `yarn`
+- run `docker run --name dbimage -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres`
+- Acess postbird or another postgres manager and create db with any name. 
+- Configure db credentials in src > config > database.js.
+- run `yarn sequelize db:migrate`
+- run `yarn dev`
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
 
 ---
 
-Feito com ♥ by me
+Created with passion by me 👨🏻‍💻
+
+
+
+
+
+
+
+
